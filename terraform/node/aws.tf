@@ -23,7 +23,7 @@ resource "aws_instance" "control" {
   }
 
   associate_public_ip_address = false
-  key_name = aws_key_pair.node_control_ssh_public_key.key_name
+  key_name                    = aws_key_pair.node_control_ssh_public_key.key_name
 
   tags = {
     role = "control"
@@ -41,7 +41,7 @@ resource "aws_instance" "workers" {
   }
 
   associate_public_ip_address = false
-  key_name = aws_key_pair.node_worker_ssh_public_key.key_name
+  key_name                    = aws_key_pair.node_worker_ssh_public_key.key_name
 
   tags = {
     role = "workers"

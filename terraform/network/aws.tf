@@ -1,5 +1,5 @@
 locals {
-    aws_zones = data.aws_availability_zones.aws_zones.names
+  aws_zones = data.aws_availability_zones.aws_zones.names
 }
 
 data "aws_availability_zones" "aws_zones" {

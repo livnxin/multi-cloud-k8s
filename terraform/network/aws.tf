@@ -31,3 +31,12 @@ resource "aws_network_interface" "control_interface" {
     Name = "control_node_network_interface"
   }
 }
+
+resource "aws_network_interface" "worker_interface" {
+  subnet_id   = aws_subnet.aws_kubernetes_node_subnet.id
+  private_ips = ["10.57.1.21"]
+
+  tags = {
+    Name = "worker_node_network_interface"
+  }
+}

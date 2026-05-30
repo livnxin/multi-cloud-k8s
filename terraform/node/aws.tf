@@ -3,7 +3,7 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-jammy-24.04-amd64-server-*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-noble-24.04-amd64-server-*"]
   }
 
   filter {
@@ -19,7 +19,7 @@ resource "aws_instance" "control" {
   instance_type = "t3.micro"
 
   primary_network_interface {
-    network_interface_id = var.control_interface_id
+    network_interface_id = var.aws_control_interface_id
   }
 
   associate_public_ip_address = false
@@ -37,7 +37,7 @@ resource "aws_instance" "workers" {
   count = var.worker_count
 
   primary_network_interface {
-    network_interface_id = var.worker_interface_id
+    network_interface_id = var.aws_worker_interface_id
   }
 
   associate_public_ip_address = false

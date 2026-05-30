@@ -1,0 +1,1 @@
+Multi cloud to prevent vendor lock in, increase reliability 

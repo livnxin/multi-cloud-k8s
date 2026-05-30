@@ -36,10 +36,6 @@ resource "aws_instance" "workers" {
 
   count = var.worker_count
 
-  primary_network_interface {
-    network_interface_id = var.aws_worker_interface_id
-  }
-
   associate_public_ip_address = false
   key_name                    = aws_key_pair.node_worker_ssh_public_key.key_name
 

@@ -14,9 +14,18 @@ resource "aws_vpc" "main_aws_vpc" {
   }
 }
 
-resource "aws_subnet" "aws_kubernetes_node_subnet" {
+resource "aws_subnet" "aws_kubernetes_control_subnet" {
   vpc_id     = aws_vpc.main_aws_vpc.id
-  cidr_block = "10.57.1.0/24"
+  cidr_block = "10.57.1.248/29"
+
+  tags = {
+    role = "kubernetes"
+  }
+}
+
+resource "aws_subnet" "aws_kubernetes_worker_subnet" {
+  vpc_id     = aws_vpc.main_aws_vpc.id
+  cidr_block = "10.57.2.0/24"
 
   tags = {
     role = "kubernetes"
@@ -24,7 +33,7 @@ resource "aws_subnet" "aws_kubernetes_node_subnet" {
 }
 
 resource "aws_network_interface" "control_interface" {
-  subnet_id   = aws_subnet.aws_kubernetes_node_subnet.id
+  subnet_id   = aws_subnet.aws_kubernetes_control_subnet.id
   private_ips = ["10.57.1.11"]
 
   tags = {
@@ -33,7 +42,7 @@ resource "aws_network_interface" "control_interface" {
 }
 
 resource "aws_network_interface" "worker_interface" {
-  subnet_id   = aws_subnet.aws_kubernetes_node_subnet.id
+  subnet_id   = aws_subnet.aws_kubernetes_worker_subnet.id
   private_ips = ["10.57.1.21"]
 
   tags = {

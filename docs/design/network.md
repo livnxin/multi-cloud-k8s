@@ -1,0 +1,1 @@
+IPV 6 is used because IPV4 is becoming scarce. By using encapsulation, IPV6 endpoint can still communicate even through IPV4 routes. 
